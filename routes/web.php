@@ -7,6 +7,7 @@ Route::get('/', fn () => Inertia::render('welcome'))->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('dashboard', fn () => Inertia::render('dashboard'))->name('dashboard');
+    Route::get('organisations', fn () => Inertia::render('organisations'))->name('organisations');
 });
 
 require __DIR__.'/settings.php';
