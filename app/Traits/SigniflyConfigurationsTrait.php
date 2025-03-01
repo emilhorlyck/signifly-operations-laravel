@@ -19,7 +19,7 @@ trait SigniflyConfigurationsTrait
         $this->configureDates();
         $this->configureModels();
         $this->configureUrls();
-        $this->configureVite();
+        // $this->configureVite();
     }
 
     public function configureCommands(): void
