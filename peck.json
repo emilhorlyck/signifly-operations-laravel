@@ -2,7 +2,12 @@
     "preset": "laravel",
     "ignore": {
         "words": [
-            "php"
+            "php",
+            "Signifly",
+            "confirmable",
+            "Auth",
+            "middleware",
+            "organisation"
         ],
         "paths": []
     }
