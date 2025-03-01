@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Traits\SigniflyConfigurationsTrait;
 use Illuminate\Support\ServiceProvider;
-use Signifly\Configurations\SigniflyConfigurationsTrait;
 
 class AppServiceProvider extends ServiceProvider
 {
