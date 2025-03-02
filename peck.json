@@ -7,7 +7,8 @@
             "confirmable",
             "Auth",
             "middleware",
-            "organisation"
+            "organisation",
+            "organisations"
         ],
         "paths": []
     }
