@@ -5,6 +5,7 @@ namespace App\Jobs;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob as BaseProcessWebhookJob;
+use Illuminate\Support\Facades\Log;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class ProcessWebhookJob extends BaseProcessWebhookJob implements ShouldQueue
