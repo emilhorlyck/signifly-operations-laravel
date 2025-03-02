@@ -10,5 +10,7 @@ Route::middleware(['auth', 'verified'])->group(function (): void {
     Route::get('organisations', fn () => Inertia::render('organisations'))->name('organisations');
 });
 
+Route::webhooks('webhooks');
+
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
