@@ -34,6 +34,8 @@ class ProcessWebhookJob extends BaseProcessWebhookJob implements ShouldQueue
 
         if ($this->webhookCall->payload['data']['parent']['database_id'] === $clientDbId) {
             Log::debug('Webhook type: client_update');
+
+            ProcessClientUpdateWebhook::dispatch($this->webhookCall);
         }
 
     }

@@ -16,7 +16,13 @@ class ProcessClientUpdateWebhook implements ShouldQueue
 
     public function handle(): void
     {
-        $webhookCall = $this->webhookCall;
+        // pull the client name from the payload
+        $clientName = $this->webhookCall->payload['data']['properties']['Name']['title'][0]['text']['content'];
 
+        Organization::updateOrCreate([
+            'notion_id' => $this->webhookCall->payload['data']['id'],
+        ], [
+            'name' => $clientName,
+        ]);
     }
 }
