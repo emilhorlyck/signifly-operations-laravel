@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-
+use App\Models\Organisation;
 class ProcessClientUpdateWebhook implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -19,7 +19,7 @@ class ProcessClientUpdateWebhook implements ShouldQueue
         // pull the client name from the payload
         $clientName = $this->webhookCall->payload['data']['properties']['Name']['title'][0]['text']['content'];
 
-        Organization::updateOrCreate([
+        Organisation::updateOrCreate([
             'notion_id' => $this->webhookCall->payload['data']['id'],
         ], [
             'name' => $clientName,
