@@ -11,29 +11,29 @@ class WebhookSourceValidator implements SignatureValidator
 {
     public function isValid(Request $request, WebhookConfig $config): bool
     {
-        Log::info('Allowing Notion webhooks');
 
-        dump([
-            'request' => $request,
-            'config' => $config,
-            'request keys' => [
-                'source' => $request->header('source'),
-                'token' => $request->header('token'),
-            ],
-        ]);
+        if (! $request->header('source')) {
+            Log::error('Received a webhook with no source');
 
-        // if source is Notion and token matches
-        if ($request->header('source') === 'Notion' &&
-            $request->header('token') === env('NOTION_WEBHOOK_TOKEN')
-        ) {
-            dump('Notion token matches');
-
-            return true;
+            return false;
         }
 
-        return true;
+        if (! $request->header('source') === 'Notion') {
+            Log::error('Received a non-Notion webhook with source: '.$request->header('source'));
 
-        // return false;
+            return false;
+        }
 
+        // if source is Notion and token matches
+        if ($request->header('token') === env('NOTION_WEBHOOK_TOKEN')
+        ) {
+
+            return true;
+        } else {
+            // log substring of last 4 characters of token
+            Log::error('Received a Notion webhook with invalid token ending in: '.substr($request->header('token'), -4));
+
+            return false;
+        }
     }
 }
